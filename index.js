@@ -21,9 +21,9 @@ const resultRoutes = require('./src/routes/resultRoutes');
 const analysisReadingRoutes = require('./src/routes/analysisReadingRoutes');
 const analysisResultRoutes = require('./src/routes/analysisResultRoutes');
 
-app.use('/users', userRoutes);
-app.use('/clients', clientRoutes);
-app.use('/analysis', analysisRoutes);
+app.use('/users', userRoutes);//ya
+app.use('/clients', clientRoutes);//ya
+app.use('/analysis', analysisRoutes);//ya
 app.use('/zones', zoneRoutes);
 app.use('/readings', readingRoutes);
 app.use('/results', resultRoutes);

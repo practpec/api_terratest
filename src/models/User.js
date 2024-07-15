@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/database');
 
 const User = sequelize.define('User', {
-  id_customers: {
+  id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -20,7 +20,7 @@ const User = sequelize.define('User', {
     allowNull: true
   },
   password: {
-    type: DataTypes.STRING(45),
+    type: DataTypes.STRING(100),
     allowNull: false
   },
   deleted: {

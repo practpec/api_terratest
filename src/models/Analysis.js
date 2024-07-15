@@ -2,9 +2,11 @@ const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/database');
 const Client = require('./Client');
 
+
 const Analysis = sequelize.define('Analysis', {
   id: {
     type: DataTypes.INTEGER,
+    autoIncrement: true,
     primaryKey: true
   },
   id_client: {
@@ -40,6 +42,5 @@ const Analysis = sequelize.define('Analysis', {
   timestamps: false
 });
 
-Analysis.belongsTo(Client, { foreignKey: 'id_client' });
-
+Analysis.belongsTo(Client, { foreignKey: 'id_client' }); 
 module.exports = Analysis;

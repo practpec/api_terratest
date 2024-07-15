@@ -1,13 +1,5 @@
+const Analysis = require('../models/Analysis');
 const Client = require('../models/Client');
-
-exports.createClient = async (req, res) => {
-  try {
-    const client = await Client.create(req.body);
-    res.status(201).json(client);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
 exports.getClients = async (req, res) => {
   try {
@@ -41,12 +33,20 @@ exports.updateClient = async (req, res) => {
   }
 };
 
-exports.deleteClient = async (req, res) => {
+exports.getAnalysesByClient = async (req, res) => {
   try {
     const { id } = req.params;
-    const deleted = await Client.destroy({ where: { id } });
-    if (!deleted) return res.status(404).json({ error: 'Client not found' });
-    res.status(204).send();
+    const client = await Client.findByPk(id);
+    if (!client) {
+      return res.status(404).json({ error: 'Client not found' });
+    }
+    const analyses = await Analysis.findAll({
+      where: { id_client: id },
+      attributes: { exclude: ['created_at'] },
+      include: [],
+    });
+
+    res.json(analyses);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
