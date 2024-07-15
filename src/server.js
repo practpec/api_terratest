@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const { sequelize } = require('./config/database');
+const { sequelize } = require('./src/config/database');
 require('dotenv').config();
 
 const app = express();
@@ -12,14 +12,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-const userRoutes = require('./routes/userRoutes');
-const clientRoutes = require('./routes/clientRoutes');
-const analysisRoutes = require('./routes/analysisRoutes');
-const zoneRoutes = require('./routes/zoneRoutes');
-const readingRoutes = require('./routes/readingRoutes');
-const resultRoutes = require('./routes/resultRoutes');
-const analysisReadingRoutes = require('./routes/analysisReadingRoutes');
-const analysisResultRoutes = require('./routes/analysisResultRoutes');
+const userRoutes = require('./src/routes/userRoutes');
+const clientRoutes = require('./src/routes/clientRoutes');
+const analysisRoutes = require('./src/routes/analysisRoutes');
+const zoneRoutes = require('./src/routes/zoneRoutes');
+const readingRoutes = require('./src/routes/readingRoutes');
+const resultRoutes = require('./src/routes/resultRoutes');
+const analysisReadingRoutes = require('./src/routes/analysisReadingRoutes');
+const analysisResultRoutes = require('./src/routes/analysisResultRoutes');
 
 app.use('/users', userRoutes);
 app.use('/clients', clientRoutes);
