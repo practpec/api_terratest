@@ -20,6 +20,8 @@ const readingRoutes = require('./src/routes/readingRoutes');
 const resultRoutes = require('./src/routes/resultRoutes');
 const analysisReadingRoutes = require('./src/routes/analysisReadingRoutes');
 const analysisResultRoutes = require('./src/routes/analysisResultRoutes');
+const mqttRoutes = require('./src/routes/mqttRoutes');
+
 
 app.use('/users', userRoutes);//ya
 app.use('/clients', clientRoutes);//ya
@@ -29,6 +31,7 @@ app.use('/readings', readingRoutes);
 app.use('/results', resultRoutes);
 app.use('/analysis-readings', analysisReadingRoutes);
 app.use('/analysis-results', analysisResultRoutes);
+app.use('/mqtt', mqttRoutes);
 
 sequelize.sync().then(() => {
   app.listen(PORT, () => {
