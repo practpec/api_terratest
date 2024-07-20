@@ -24,21 +24,22 @@
 }
 }
 
+para los botones 
 
-{
-    "client": {
-      "name": "John Doe",
-      "number_contact": 1234,
-      "locate": "123 Main St, Anytown"
-    },
-    "zones": [
-      {
-        "indications": "Requiere riego adicional",
-        "depth": 15,
-      }
-    ],
-    "name": "Análisis de Suelo en el Campo",
-    "content": "Análisis completo del suelo en el campo de cultivo.",
-    "locate": "Campo de Cultivo Norte",
-  }
-  
+post:
+/mqtt
+
+activar por zona
+
+
+
+body{
+  "id_analysis":1,
+  "id_zone":1
+}
+
+general
+
+body{
+  "id_analysis":1
+}

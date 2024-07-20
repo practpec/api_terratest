@@ -13,7 +13,7 @@ const Client = sequelize.define('Client', {
     allowNull: true
   },
   number_contact: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING(60),
     allowNull: false
   },
   locate: {
