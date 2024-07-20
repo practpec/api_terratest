@@ -21,3 +21,7 @@ exports.activarScript = (req, res) => {
         res.status(500).json({ error: 'Ocurrió un error al enviar la solicitud de script MQTT' });
     }
 };
+
+
+
+

@@ -1,0 +1,44 @@
+{
+    "analis por id":{
+    "datos":"datos propios del analisis",
+    "cliente":"datos propios delcliente",
+    "zonas":{
+        "zona1":"datos de la zona",
+        "zona n": "datos de la zona",
+    },
+    "resultados_zonas":{
+        "data":"datos de la zona",
+        "resultados_cultivos": {
+            "cultivo 1":"datos de la zona",
+            "cultivo n":"datos de la zona"
+        }
+    },
+    "resultados_general":{
+        "data_analysis":"datos de la zona",
+        "resultados_analysis": {
+            "cultivo 1":"datos de la zona",
+            "cultivo n":"datos de la zona"
+        }
+    }
+    
+}
+}
+
+
+{
+    "client": {
+      "name": "John Doe",
+      "number_contact": 1234,
+      "locate": "123 Main St, Anytown"
+    },
+    "zones": [
+      {
+        "indications": "Requiere riego adicional",
+        "depth": 15,
+      }
+    ],
+    "name": "Análisis de Suelo en el Campo",
+    "content": "Análisis completo del suelo en el campo de cultivo.",
+    "locate": "Campo de Cultivo Norte",
+  }
+  

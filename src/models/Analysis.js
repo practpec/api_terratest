@@ -42,5 +42,7 @@ const Analysis = sequelize.define('Analysis', {
   timestamps: false
 });
 
-Analysis.belongsTo(Client, { foreignKey: 'id_client' }); 
+Analysis.belongsTo(Client, { foreignKey: 'id_client' });
+Client.hasMany(Analysis, { foreignKey: 'id_client' });
+
 module.exports = Analysis;

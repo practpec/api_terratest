@@ -1,4 +1,6 @@
 const mqtt = require('mqtt');
+const amqplib = require('amqplib');
+const procesar = require('../helpers/processMessage')
 const { exec } = require('child_process');
 
 const options = {
@@ -7,10 +9,18 @@ const options = {
     username: 'guest',
     password: 'guest',
 }
-const mqttClient = mqtt.connect('mqtt://44.223.219.42', options); // Cambia la URL si es necesario
+const mqttClient = mqtt.connect('mqtt://44.223.219.42', options);
+
 
 mqttClient.on('connect', function () {
     console.log('Conectado al servidor MQTT');
+    mqttClient.subscribe('node_a_rasp', (err) => {
+        if (err) console.error('Error al suscribirse:', err);
+    });
+
+    mqttClient.subscribe('rasp', (err) => {
+        if (err) console.error('Error al suscribirse:', err);
+    });
 });
 
 mqttClient.on('error', function (err) {
@@ -20,7 +30,6 @@ mqttClient.on('error', function (err) {
 mqttClient.on('message', function (topic, message) {
     console.log('Mensaje recibido:', topic, message.toString());
 
-    // Verificar el mensaje recibido y ejecutar el script adecuado
     if (topic === 'ejecutar-script.mqtt') {
         try {
             const data = JSON.parse(message.toString());
@@ -47,5 +56,25 @@ mqttClient.on('message', function (topic, message) {
         }
     }
 });
+
+
+(async () => {
+    const queue = 'amqp';
+    const conn = await amqplib.connect('amqp://44.223.219.42');
+      console.log("Conexion exitosa");
+    const ch1 = await conn.createChannel();
+    await ch1.assertQueue(queue);
+  
+    // Listener
+    ch1.consume(queue, (msg) => {
+      if (msg !== null) {
+        procesar(msg)
+        console.log('Tienes un mensaje turururtururu :)');
+        ch1.ack(msg);
+      } else {
+        console.log('Consumer cancelled by server');
+      }
+    });
+  })(); 
 
 module.exports = mqttClient;

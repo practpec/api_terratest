@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../config/database');
+const Analysis = require('../models/Analysis');
 
 const Client = sequelize.define('Client', {
   id: {
@@ -32,5 +33,6 @@ const Client = sequelize.define('Client', {
   tableName: 'clients',
   timestamps: false
 });
+
 
 module.exports = Client;
