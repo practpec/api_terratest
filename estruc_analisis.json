@@ -4,7 +4,7 @@
     "cliente":"datos propios delcliente",
     "zonas":{
         "zona1":"datos de la zona",
-        "zona n": "datos de la zona",
+        "zona n": "datos de la zona"
     },
     "resultados_zonas":{
         "data":"datos de la zona",
@@ -43,3 +43,59 @@ general
 body{
   "id_analysis":1
 }
+
+
+
+
+
+Datos generales procesados exitosamente
+Tienes un mensaje turururtururu :)
+Error al procesar data: TypeError: Cannot read properties of undefined (reading '2')
+    at procesarData (C:\Users\eduar\Downloads\api_terratest-main (1)\api_terratest-main\src\helpers\processMessage.js:79:27)
+    at procesar (C:\Users\eduar\Downloads\api_terratest-main (1)\api_terratest-main\src\helpers\processMessage.js:22:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Error al procesar los datos: TypeError: Cannot read properties of undefined (reading '2')
+    at procesarData (C:\Users\eduar\Downloads\api_terratest-main (1)\api_terratest-main\src\helpers\processMessage.js:79:27)
+    at procesar (C:\Users\eduar\Downloads\api_terratest-main (1)\api_terratest-main\src\helpers\processMessage.js:22:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+Mensaje recibido: node_a_rasp {"command":"ejecutar_comandos.sh","id_zone":11,"id_analysis":"7"}
+Tienes un mensaje turururtururu :)
+
+
+
+
+creacion de analysis
+{
+    "client": {
+      "name": "Cliente Ejemplo",
+      "number_contact": "1234567890",
+      "locate": "Ubicación Ejemplo"
+    },
+    "zones": [
+      {
+        "indications": "Zona 1",
+        "depth": 10
+      },
+      {
+        "indications": "Zona 2",
+        "depth": 15
+      }
+    ],
+    "name": "Análisis Ejemplo",
+    "content": "Contenido del análisis",
+    "locate": "Ubicación del análisis"
+  }
+  
+
+
+  necesito aplicar un proxi inverso con nginx esta me va aprroiteger a  tres instancias ec2 en aws   un server nodejs del cual la otra intancia de front en react js accede a los datos
+
+la intancia a su vez se conecta a una base de datos en rds,  y tambien a la tercera instancia en la que esta la cola mqtt,
+la cola mqtt es deb rabbit y su plugin  tanto amqp y mqtt( para ello ya esta contenitizado con docker), a esta cola tambien se conecta una raspberry, y es de manera bidireccional, 
+
+
+los demas usuarios nodebenm tener acceso a lasd demas instancias que no sea el front, solol m
+
+
+los usuarios solo deben conectarse al front reactjs
+fornt reactjs solo conecta a node, instancia nodejs conecta a mqtt y base de dsatos rds, mqtt conacta a node y a raspberry, raspberry conecta a mqtt

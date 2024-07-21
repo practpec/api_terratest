@@ -1,18 +1,24 @@
 
-const mqttClient = require('../utils/mqttServer');
+//const mqttClient = require('../utils/mqttServer');
+const exist = require('../validations/mqttValidate')
 
-exports.activarScript = (req, res) => {
+exports.activarScript = async (req, res) => {
     try {
+        const validationResponse = await exist(req.body);
+        
+        if (validationResponse) {
+            return res.status(validationResponse.status).json({ error: validationResponse.error });
+        } 
         const id_analysis = req.body.id_analysis;
         const id_zone = req.body.id_zone || 0;
-
+        
         if (!id_analysis) {
             return res.status(400).json({ error: 'Falta el cuerpo del mensaje' });
         }
 
         const command = id_zone ? 'ejecutar_comandos.sh' : 'ejecutar_general.sh';
 
-        mqttClient.publish('node_a_rasp', JSON.stringify({ command, id_zone, id_analysis }));
+        //mqttClient.publish('node_a_rasp', JSON.stringify({ command, id_zone, id_analysis }));
 
         res.status(200).json({ message: 'Solicitud de ejecución de script enviada correctamente' });
 

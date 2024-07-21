@@ -11,14 +11,13 @@ async function procesar(msg) {
     try {
         const content = JSON.parse(msg.content.toString());
 
-        if (content && content.data_analysis) {
+        if (content && content.data_analysis && Array.isArray(content.data_analysis) && content.data_analysis.length > 0) {
             await procesarDataAnalysis(content.data_analysis[0], t);
             console.log(content.resultados_analysis)
             await procesarResultadosAnalysis(content.resultados_analysis, t);
             
-
             console.log('Datos generales procesados exitosamente');
-        } else if (content && content.data) {
+        } else if (content && content.data && content.data.length > 0) {
             await procesarData(content.data[0], t);
             await procesarResultadosCultivos(content.resultados_cultivos, t);
 

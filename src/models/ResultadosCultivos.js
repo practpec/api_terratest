@@ -34,4 +34,4 @@ const ResultadosCultivos = sequelize.define('ResultadosCultivos', {
     timestamps: false
 });
 
-module.exports = ResultadosCultivos;
+module.exports = ResultadosCultivos; 

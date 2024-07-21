@@ -1,12 +1,12 @@
 const express = require('express');
 const zoneController = require('../controllers/zoneController');
-
+const authenticateToken  = require('../middlewares/authToken');
+const idValidate = require('../validations/idValidate');
+const error = require('../handlers/handlerValidation')
 const router = express.Router();
 
-router.post('/', zoneController.createZone);
-router.get('/', zoneController.getZones);
-router.get('/:id', zoneController.getZoneById);
-router.put('/:id', zoneController.updateZone);
-router.delete('/:id', zoneController.deleteZone);
+router.get('/', authenticateToken, zoneController.getZones);
+router.get('/:id', authenticateToken, idValidate.getValidationId, error,  zoneController.getZoneById);
+router.delete('/:id',authenticateToken, idValidate.getValidationId, error, zoneController.deleteZone);
 
 module.exports = router;

@@ -11,22 +11,18 @@ const getAnalysisById = async (req, res) => {
     const { id } = req.params;
 
     try {
-        // Buscar el análisis
         const analysis = await Analysis.findByPk(id);
         if (!analysis) {
             return res.status(404).json({ message: 'Analysis not found' });
         }
 
-        // Buscar el cliente asociado
         const client = await Client.findByPk(analysis.id_client);
         if (!client) {
             return res.status(404).json({ message: 'Client not found' });
         }
 
-        // Buscar las zonas asociadas al análisis
         const zones = await Zone.findAll({ where: { id_analysis: id } });
 
-        // Buscar los datos asociados a cada zona
         const zonesWithData = await Promise.all(zones.map(async (zone) => {
             const data = await Data.findAll({ where: { id_zone: zone.id } });
             const resultadosCultivos = await ResultadosCultivos.findAll({ where: { id_zone: zone.id } });
@@ -45,7 +41,6 @@ const getAnalysisById = async (req, res) => {
             };
         }));
 
-        // Buscar los resultados generales del análisis
         const dataAnalysis = await DataAnalysis.findAll({ where: { id_analysis: id } });
         const resultadosAnalysis = await ResultadosAnalysis.findAll({ where: { id_analysis: id } });
 

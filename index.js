@@ -24,7 +24,7 @@ app.use('/clients', clientRoutes);//ya
 app.use('/analysis', analysisRoutes);//ya
 app.use('/zones', zoneRoutes);//ya
 app.use('/mqtt', mqttRoutes);//ya
-app.use('/results', resultsRoutes);
+app.use('/results', resultsRoutes);//ya
 
 
 sequelize.sync().then(() => {
