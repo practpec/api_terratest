@@ -1,5 +1,5 @@
 
-//const mqttClient = require('../utils/mqttServer');
+const mqttClient = require('../utils/mqttServer');
 const exist = require('../validations/mqttValidate')
 
 exports.activarScript = async (req, res) => {
@@ -18,7 +18,7 @@ exports.activarScript = async (req, res) => {
 
         const command = id_zone ? 'ejecutar_comandos.sh' : 'ejecutar_general.sh';
 
-        //mqttClient.publish('node_a_rasp', JSON.stringify({ command, id_zone, id_analysis }));
+        mqttClient.publish('node_a_rasp', JSON.stringify({ command, id_zone, id_analysis }));
 
         res.status(200).json({ message: 'Solicitud de ejecución de script enviada correctamente' });
 

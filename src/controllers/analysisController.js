@@ -4,14 +4,22 @@ const Zone = require('../models/Zone');
 const { sequelize } = require('../config/database');
 
 exports.createAnalysisWithClientAndZones = async (req, res) => {
+  let id;
   const { client, zones, ...analysisData } = req.body;
 
   try {
-    const createdClient = await Client.create(client);
+      const exist = await clientValidate(client.number_contact)
+      console.log(exist)
+      if(exist == null){
+        const createdClient = await Client.create(client);
+        id = createdClient.id;
+      }else{
+        id = exist;
+      }
 
     const analysis = await Analysis.create({
       ...analysisData,
-      id_client: createdClient.id
+      id_client: id
     });
 
     if (zones && zones.length > 0) {
@@ -21,7 +29,7 @@ exports.createAnalysisWithClientAndZones = async (req, res) => {
 
     res.status(201).json({
       message: 'Client, analysis, and zones created successfully',
-      client: createdClient,
+      client: id,
       analysis,
       zones
     });
@@ -95,3 +103,22 @@ exports.deleteAnalysis = async (req, res) => {
     res.status(500).json({ error: `Error deleting analysis: ${error.message}` });
   }
 };
+
+async function clientValidate(number_contact) {
+  try {
+    const existingRecords = await Client.findAll({
+      where: {
+        number_contact: number_contact
+      }
+    });
+
+    if (existingRecords.length > 0) {
+      return existingRecords[0].id; 
+    } else {
+      return null; 
+    }
+  } catch (error) {
+    console.error('Error al verificar duplicados del usuario', error);
+    throw error;
+  }
+}

@@ -88,7 +88,7 @@ creacion de analysis
   
 
 
-  necesito aplicar un proxi inverso con nginx esta me va aprroiteger a  tres instancias ec2 en aws   un server nodejs del cual la otra intancia de front en react js accede a los datos
+  necesito aplicar un proxi inverso con nginx esta me va a proteger a  tres instancias ec2 en aws   un server nodejs del cual la otra intancia de front en react js accede a los datos
 
 la intancia a su vez se conecta a una base de datos en rds,  y tambien a la tercera instancia en la que esta la cola mqtt,
 la cola mqtt es deb rabbit y su plugin  tanto amqp y mqtt( para ello ya esta contenitizado con docker), a esta cola tambien se conecta una raspberry, y es de manera bidireccional, 
