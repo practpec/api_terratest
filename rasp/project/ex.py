@@ -93,7 +93,7 @@ cultivos = {
 
     },
 
-    "Cahuate": {
+    "Caña": {
 
         "Humedad": (70, 90),
 
